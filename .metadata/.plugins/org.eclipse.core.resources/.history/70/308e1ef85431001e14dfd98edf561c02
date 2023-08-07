@@ -1,0 +1,25 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Home {
+	
+	WebDriver driver;
+
+	public Home(WebDriver driver) {
+		this.driver=driver;
+	}
+
+	By Account=By.linkText("My Account");
+	By loginbtn=By.linkText("Login");
+	
+	public void clickAccount() {
+		driver.findElement(Account).click();
+	}
+	
+	public void clickLogin() {
+		driver.findElement(loginbtn).click();
+	}
+	
+}

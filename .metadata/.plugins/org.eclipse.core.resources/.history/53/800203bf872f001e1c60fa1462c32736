@@ -1,0 +1,863 @@
+package obstacles;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.Calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+import java.util.HashMap;
+
+
+@Test
+public class Obstacles {
+	
+	WebDriver driver;
+
+	WebDriverWait wait;
+	 
+	public void Obstacle1_Idsareoteverything() {
+		   driver=new ChromeDriver();
+	    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+		
+		WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[1]/td[9]/a"));
+		try1.click();
+		
+		WebElement clickMe=driver.findElement(By.xpath("//a[@class='btn theme-btn-color btn-lg animated fadeInDown delay-3 btn-big']"));
+		clickMe.click();
+		
+		driver.findElement(By.xpath("//button[@class='confirm']")).click();
+		
+	}
+	
+	@Test
+	
+		public void Obstacle2_Twins() throws InterruptedException {
+		driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[9]/a"));
+			try1.click();
+			
+			WebElement click=driver.findElement(By.xpath("//div [@id='thisoneistheright']/p/a"));
+			click.click();
+			
+			Thread.sleep(3000);
+			
+			driver.findElement(By.xpath("//button[@class='confirm']")).click();
+		
+	}
+		
+		@Test
+		public void Obstacle4_Twotimes() throws InterruptedException {
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement element=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[9]/a"));
+	        element.click();
+	        
+	        WebElement click1=driver.findElement(By.xpath("//a[@id='rnd_46576']"));
+			click1.click();
+			Thread.sleep(1000);
+			click1.click();
+	        
+			//driver.findElement(By.xpath("//button[@class='confirm']")).click();
+
+			
+		}
+		
+		@Test
+		public void Obstacle5_FunWithTable() {
+			
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement element=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[5]/td[9]/a"));
+	        element.click();
+	        
+	        WebElement table=driver.findElement(By.xpath("//div/table[@id='persons']"));
+	        List<WebElement> rows=table.findElements(By.tagName("tr"));
+	        
+	          for(WebElement row:rows) {
+	        	  
+	        	  List<WebElement> cells = row.findElements(By.tagName("td"));
+	        	  
+	        	  if(cells.size()>=3) {
+	        		  
+	        		  String firstName = cells.get(0).getText();
+	        		  
+	        		  String lastName = cells.get(1).getText();
+	        		  
+	        		  if("John".equals(firstName) && "Doe".equals(lastName)) {
+	        			  WebElement editbtn=cells.get(cells.size()-1).findElement(By.name("edit"));
+	        			  
+	        			  editbtn.click();
+	        			  
+	        		  }
+
+	        		  
+	        	  }
+	        	  
+	        	  
+	          }
+	        
+	        
+			
+		}
+		
+		
+		
+		
+		@Test
+
+		public void Obstacle3_NotaTable() throws InterruptedException {                                      // error
+			
+			
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement element=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[9]/a"));
+	        element.click();
+	        
+	        WebElement generate_btn=driver.findElement(By.id("generate"));
+	        
+	        WebElement editBox = driver.findElement(By.id("offerId"));
+	        
+	        int initialRowCount = driver.findElements(By.xpath("//div[@class='col-md-4']")).size();
+            
+	        generate_btn.click();
+			
+		}
+		
+		
+		@Test
+		public void Obstacle6_TestingMethodes() throws InterruptedException {
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[6]/td[9]/a"));
+			try1.click();
+			Select multilist = new Select(driver.findElement(By.xpath("//select[@id='multiselect']")));
+			
+			if(multilist.isMultiple()) 
+			{
+				multilist.selectByVisibleText("Functional testing");
+				
+				multilist.selectByVisibleText("GUI testing");
+				multilist.selectByVisibleText("End2End testing");
+				
+				multilist.selectByVisibleText("Exploratory testing");
+
+			}
+			
+			Thread.sleep(1000);	
+		}
+		
+		@Test
+		public void Obstacle7_Andcounting() throws InterruptedException {                                  //error
+			driver=new ChromeDriver();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+				driver.get(url);
+				
+				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[7]/td[9]/a"));
+				try1.click();
+				
+				
+				try {
+		            // Locate the autocomplete textbox
+		            WebElement autocompleteTextbox = driver.findElement(By.id("s2id_autogen1"));
+
+		            // Type the given characters in the textbox
+		            WebElement character = driver.findElement(By.xpath("//span[@id='typeThis']"));
+		            String randomText = character.getText();
+
+		       
+		           // String givenCharacters = "CCC";
+		            autocompleteTextbox.sendKeys(randomText);
+
+		            // Wait for the autocomplete suggestions to appear
+		            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+		            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='select2-choices']")));
+		                      
+
+		            // Get the number of autocomplete entries
+		            WebElement dropdwn = driver.findElement(By.xpath("//ul[@class='select2-choices']"));
+		            
+		            List<WebElement> options = dropdwn.findElements(By.tagName("option"));
+			        
+		            Map<String, Integer> valueOccurrences = new HashMap<>();
+                      
+		          for (WebElement randomtext : options) 
+		          {
+		            String value = randomtext.getText().trim();
+		             //  If the value is already present in the map, increment its count
+		              if (valueOccurrences.containsKey(value)) 
+		              {
+		                   int count = valueOccurrences.get(value);
+		                  valueOccurrences.put(value, count + 1);
+		                } 
+		              else
+		              {
+		                    // If the value is not present, add it to the map with count = 1
+		                   valueOccurrences.put(value, 1);
+		                }
+		            }
+		            
+		            
+		          int numberOfEntries = dropdwn.findElements(By.tagName("li")).size();
+		            
+                    
+		            // Enter the number of entries into the designated textbox
+		           
+		            WebElement numberOfEntriesTextbox = driver.findElement(By.id("entryCount"));
+		           numberOfEntriesTextbox.sendKeys(String.valueOf(numberOfEntries));
+
+		            // Just for demonstration purposes, wait for a few seconds before closing the browser
+		            Thread.sleep(3000);
+
+		            // Close the browser
+		           // driver.quit();
+
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		           // driver.quit();
+		        }
+		    }
+		
+		
+		@Test
+		
+		public void Obstacle7_Andcounting1() throws InterruptedException {
+		    driver = new ChromeDriver();
+		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		    driver.manage().window().maximize();
+		    String url = "https://obstaclecourse.tricentis.com/Obstacles/List";
+		    driver.get(url);
+
+		    WebElement try1 = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[7]/td[9]/a"));
+		    try1.click();
+
+		    try {
+		        // Locate the autocomplete textbox
+		        WebElement autocompleteTextbox = driver.findElement(By.id("s2id_autogen1"));
+
+	            WebElement character = driver.findElement(By.xpath("//span[@id='typeThis']"));
+
+	            String randomText = character.getText();
+
+		        // Type the given characters in the textbox
+		       // String randomText = "CCC"; // Replace this with the correct source for randomText
+		        autocompleteTextbox.sendKeys(randomText);
+
+		        // Wait for the autocomplete suggestions to appear
+		        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='select2-choices']")));
+
+		        // Get the number of autocomplete entries
+		        WebElement dropdwn = driver.findElement(By.xpath("//ul[@class='select2-choices']"));
+
+		      //  List<WebElement> options = dropdwn.findElements(By.tagName("option"));
+		      //  int totalOccurrences = options.size();
+		        
+		        java.util.List<WebElement> options = ((Select) dropdwn).getOptions();
+
+	            // Get the count of options
+	            int optionsCount = options.size();
+
+		        // Enter the number of entries into the designated textbox
+		        WebElement numberOfEntriesTextbox = driver.findElement(By.id("entryCount"));
+		        numberOfEntriesTextbox.sendKeys(String.valueOf(optionsCount));
+    
+		        
+		        
+		        // Just for demonstration purposes, wait for a few seconds before closing the browser
+		        Thread.sleep(3000);
+		        
+	            System.out.println("Number of options in the dropdown: " + optionsCount);
+
+
+		        // Close the browser
+		        driver.quit();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		      //  driver.quit();
+		    }
+		}
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		@Test
+         public void Obstacle8_WaitAMoment() throws InterruptedException {
+			driver=new ChromeDriver();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+				driver.get(url);
+				
+				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[8]/td[9]/a"));
+				try1.click();
+				
+	            WebElement calculate=driver.findElement(By.xpath("//p/button[@id='one']"));
+	            calculate.click();
+	            
+	            Thread.sleep(5000);
+	            
+	            WebElement send=driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/div[4]/div[3]/p"));
+	            send.click();
+							
+		}
+		
+         
+         @Test
+         public void Obstacle9_Fly() throws InterruptedException {                                   //  test passed , but no output
+ 			driver=new ChromeDriver();
+ 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+ 				driver.manage().window().maximize();
+ 				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+ 				driver.get(url);
+ 				
+ 				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[9]/td[9]/a"));
+ 				try1.click();
+ 				
+ 				try {
+ 		            // Locate the source image element on the left side
+ 		            WebElement sourceImage = driver.findElement(By.id("toscabot"));
+
+ 		            // Locate the target drop area element on the right
+ 		            WebElement targetDropArea = driver.findElement(By.id("//div/div/div[@id='to']"));
+
+ 		            // Create an instance of the Actions class
+ 		            Actions actions = new Actions(driver);
+ 		            Thread.sleep(500);
+
+ 		            // Perform the drag and drop operation
+ 		            actions.dragAndDrop(sourceImage, targetDropArea).build().perform();
+
+ 		            // Just for demonstration purposes, wait for a few seconds before closing the browser
+ 		            Thread.sleep(3000);
+
+ 		            // Close the browser
+ 		          //  driver.quit();
+
+ 		        } catch (Exception e) {
+ 		            e.printStackTrace();
+ 		           // driver.quit();
+ 		        }
+         }
+         
+         @Test
+         public void Obstacle10_TodoList() {
+        	 
+        	  driver=new ChromeDriver();
+        	   driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+				driver.get(url);
+				
+				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[10]/td[9]/a"));
+				try1.click();
+				
+
+		      //  List<String> idsInAscendingOrder = List.of("1", "2", "3", "4", "5", "6");
+		        
+		        List<String> idsInAscendingOrder = Arrays.asList("1", "2", "3", "4", "5", "6");
+		        
+		        for (String id : idsInAscendingOrder) {
+		            // Find the row in 'table1' based on the ID
+		            WebElement rowToDrag = driver.findElement(By.xpath("//table[@id='todo-tasks']//tr[contains(@task, '" + id + "')]"));
+
+		            // Find the target table ('table2')
+		            WebElement targetTable = driver.findElement(By.id("completed-tasks"));
+
+		            // Perform the drag-and-drop action
+		            dragAndDrop(driver, rowToDrag, targetTable);
+		        }
+
+		       // driver.quit();
+         }
+
+         // This method simulates the drag-and-drop action to move a row to the target table
+         private static void dragAndDrop(WebDriver driver, WebElement source, WebElement target) {
+             // Create an instance of Actions class
+             Actions actions = new Actions(driver);
+
+             // Perform the drag-and-drop action
+             actions.clickAndHold(source).moveToElement(target).release().build().perform();
+      
+         }
+            
+ 		@Test
+         public void Obstacle11_ExtractNumber() throws InterruptedException {
+        	  WebDriver driver = new ChromeDriver();
+
+              driver.manage().window().maximize();
+
+              driver.get("https://obstaclecourse.tricentis.com/Obstacles/81012/retry");
+
+              driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+              driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+
+              WebElement sentence=driver.findElement(By.id("alerttext"));
+
+              // Extract the number from the sentence
+
+              String text=sentence.getText();
+
+              double extractedNumber = extractNumberFromString(text);
+
+              //System.out.println(text);
+
+              WebElement textfield=driver.findElement(By.id("totalamountText"));
+
+              textfield.sendKeys(String.valueOf(extractedNumber));
+              System.out.println("Number entered: " + extractedNumber);
+
+              Thread.sleep(1000);
+
+              Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[5]/p")).isDisplayed());
+
+                 
+              System.out.println(driver.findElement(By.xpath("/html/body/div[5]/p")).getText());
+
+                driver.quit();
+				
+         }
+		
+
+         public void ExtractingText()throws Exception
+
+             
+
+             {
+
+                 WebDriver driver = new ChromeDriver();
+
+                 driver.manage().window().maximize();
+
+                 driver.get("https://obstaclecourse.tricentis.com/Obstacles/81012/retry");
+
+                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+                 driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+
+                 WebElement sentence=driver.findElement(By.id("alerttext"));
+
+                 
+
+                 // Extract the number from the sentence
+
+                 
+
+                 String text=sentence.getText();
+
+                 double extractedNumber = extractNumberFromString(text);
+
+                 //System.out.println(text);
+
+                 
+
+                 WebElement textfield=driver.findElement(By.id("totalamountText"));
+
+                 textfield.sendKeys(String.valueOf(extractedNumber));System.out.println("Number entered: " + extractedNumber);
+
+                 
+
+                 Thread.sleep(1000);
+
+                 Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[5]/p")).isDisplayed());
+
+                    
+
+                 System.out.println(driver.findElement(By.xpath("/html/body/div[5]/p")).getText());
+
+                   driver.quit();
+
+          
+
+                 
+
+             }
+
+              // Method to extract the number from the input string
+                 private static double extractNumberFromString(String inputString)
+
+                 {
+
+                 Pattern pattern = Pattern.compile("\\$\\d+\\.\\d{2}");
+
+                 Matcher matcher = pattern.matcher(inputString);
+
+                 if (matcher.find()) {
+
+                     String numberString = matcher.group().replace("$", "");
+
+                     return Double.parseDouble(numberString);
+
+
+                 } else {
+
+                     System.out.println("Number not found in the sentence.");
+
+                 }
+
+                 return 0;
+
+      
+                 }
+	@Test	
+ public void Obstacle12_Addition()
+ {
+	 driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+		
+		driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[9]/a")).click();
+		
+		WebElement num1=driver.findElement(By.xpath("//*[@id=\"no1\"]"));
+		int no1=Integer.parseInt(num1.getText());
+		
+		WebElement num2=driver.findElement(By.xpath("//*[@id=\"no2\"]"));
+		int no2=Integer.parseInt(num2.getText());
+		
+	//	int number1 = (int) (Math.random() * 100); // Change the range as needed.
+       // int number2 = (int) (Math.random() * 100); // Change the range as needed.
+
+        // Calculate the sum.
+        int sum = no1+no2;
+
+        // Find the sum field on the web page (replace "sumFieldId" with the actual ID or other locator of the sum field).
+        WebElement sumField = driver.findElement(By.id("result"));
+
+        // Input the sum into the sum field.
+        sumField.sendKeys(String.valueOf(sum));
+
+        // Close the WebDriver.
+       driver.quit();	
+
+ }
+      @Test           
+        public void Obstacle11_PopUP(){
+        	driver=new ChromeDriver();
+    		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    		driver.manage().window().maximize();
+    		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+    		driver.get(url);
+    		
+    		driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[7]/td[9]/a")).click();
+    		
+        	WebElement clickme=driver.findElement(By.xpath("//*[@id=\"button\"]"));
+        	clickme.click();
+        	
+        	String mainWindowHandle = driver.getWindowHandle();
+        	
+            for (String windowHandle : driver.getWindowHandles())
+            {
+                // Switch to the new window.
+                if (!windowHandle.equals(mainWindowHandle)) 
+                {
+                    driver.switchTo().window(windowHandle);
+
+                    // Close the new window.
+                    driver.close();
+                }
+            }
+
+            // Switch back to the main window.
+            driver.switchTo().window(mainWindowHandle);
+
+            // Close the WebDriver.
+            driver.quit();
+        }
+    
+
+   	public void Obstacle12_Tomorrowsdate() 
+   	{
+   		driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+		
+		driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[8]/td[9]/a")).click();
+		
+		WebElement datefield=driver.findElement(By.id("datefield"));
+		
+		Date tomorrow = getTomorrowDate();
+		
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String tomorrowFormatted = dateFormat.format(tomorrow);
+        
+       datefield.sendKeys(tomorrowFormatted);
+       driver.quit();
+
+   			}
+   	
+   	private static Date getTomorrowDate() 
+   	{
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        return calendar.getTime();
+    }
+   
+   	
+   	@Test
+   	
+ public void Obstacle13_AgainAndAgain() 
+ {
+	    driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+	 
+	     driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[6]/td[9]/a")).click();
+	     
+	    // WebElement clickbtn=driver.findElement(By.xpath("//a[@id='button']"));
+	    // clickbtn.click();
+	     while (true) {
+	            // Locate the button on the web page.
+	            WebElement button = driver.findElement(By.xpath("//a[@id='button']"));
+
+	            // Check if the button text is 'Enough', if yes, break out of the loop.
+	            if (button.getText().equals("Enough")) {
+	                break;
+	            }
+
+	            // Click the button.
+	            button.click();
+	        }
+
+	        // Close the WebDriver.
+	        driver.quit();
+	    }
+	
+	
+ @Test
+ public void Obstacle14_LotsOfRows() {
+	 
+	 driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+	 
+	    driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[9]/td[9]/a")).click();
+	    
+	    
+	    WebElement table = driver.findElement(By.id("rowCountTable"));
+	    
+	    int rowCount = table.findElements(By.tagName("tr")).size();
+	    
+	    WebElement textField = driver.findElement(By.id("rowcount"));
+	    
+        textField.sendKeys(String.valueOf(rowCount));
+        
+        WebElement clickMeButton = driver.findElement(By.id("sample"));
+        clickMeButton.click();
+
+
+    }
+ 
+ @Test
+public void Obstacle15_LastRowValue() throws InterruptedException {
+	 
+	 driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+	 
+	    driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[10]/td[9]/a")).click();
+     //   WebElement table = driver.findElement(By.id("orderTable"));
+        
+       // List<WebElement> rows = table.findElements(By.tagName("tr"));
+        
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+		
+		 js.executeScript("window.scrollBy(0,360)","");
+		 Thread.sleep(500);
+        WebElement orderValueElement = driver.findElement(By.xpath("//table[@id='orderTable']/tbody/tr[last()]/td[last()]"));
+
+        String orderValue = orderValueElement.getText();
+        
+        WebElement textField = driver.findElement(By.id("ordervalue"));
+        
+        textField.sendKeys(orderValue);
+
+}
+ 
+ 
+ @Test
+
+public void Obstacle_Toughcookie() throws InterruptedException {                                             
+	
+	    driver=new ChromeDriver();
+     	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=2";
+		driver.get(url);
+		
+		driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[9]/a")).click();
+		
+        WebElement editBox1 = driver.findElement(By.id("generated"));
+        editBox1.click();
+        String randomText = editBox1.getAttribute("value");
+         
+        Pattern pattern = Pattern.compile("\\d{3,}");
+        Matcher matcher = pattern.matcher(randomText);
+        int count = 0;
+        String[] numbers = new String[3];
+        while (matcher.find() && count < 3) {
+            numbers[count] = matcher.group();
+            count++;
+        }
+        
+        WebElement textBox1 = driver.findElement(By.xpath("//div/div/input[@id='firstNumber']"));
+        WebElement textBox2 = driver.findElement(By.id("secondNumber"));
+        WebElement textBox3 = driver.findElement(By.id("thirdNumber"));
+
+        textBox1.sendKeys(numbers[0]);
+        textBox2.sendKeys(numbers[1]);
+        textBox3.sendKeys(numbers[2]);
+ 
+      
+        
+        // Close the WebDriver
+       driver.quit();
+  
+    }
+
+@Test
+
+public void examplo() {
+	
+	
+	WebDriver driver = null;
+
+    try {
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        String url = "https://obstaclecourse.tricentis.com/Obstacles/List";
+        driver.get(url);
+
+        // Click on the link to open the autocomplete
+        WebElement try1 = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[7]/td[9]/a"));
+        try1.click();
+        
+        WebElement autocompleteTextbox = driver.findElement(By.id("s2id_autogen1"));
+
+        WebElement character = driver.findElement(By.xpath("//span[@id='typeThis']"));
+
+        String randomText = character.getText();
+        
+        
+        // Type the given characters in the textbox
+       // String randomText = "CCC"; // Replace this with the correct source for randomText
+        autocompleteTextbox.sendKeys(randomText);
+        
+        // Wait for the autocomplete suggestions to appear
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='select2-choices']")));
+
+        // Find the element representing the dropdown containing the autocomplete suggestions
+        WebElement dropdown = driver.findElement(By.xpath("//ul[@class='select2-choices']"));
+
+        // Get the list of options (autocomplete entries)
+        java.util.List<WebElement> options = dropdown.findElements(By.tagName("li"));
+
+        // Get the count of options (number of autocomplete entries)
+      
+        int count1=options.size();
+        
+
+        // Enter the number of entries into the designated textbox (assuming the element ID is "entryCount")
+        WebElement numberOfEntriesTextbox = driver.findElement(By.id("entryCount"));
+        numberOfEntriesTextbox.sendKeys(String.valueOf(options));
+
+        System.out.println("Number of options in the autocomplete dropdown: " + count1);
+
+        // Just for demonstration purposes, wait for a few seconds before closing the browser
+        Thread.sleep(3000);
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (driver != null) {
+            // Close the browser
+           // driver.quit();
+        }
+    }
+}
+
+
+
+
+
+
+
+}
+ 
+ 
+ 
+	

@@ -1,0 +1,7 @@
+package PageObject;
+
+import GenericFunctions.GenericFunctions;
+
+public class Demo extends GenericFunctions {
+
+}

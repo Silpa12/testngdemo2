@@ -1,0 +1,181 @@
+package obstacles;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Obstacles {
+	
+	WebDriver driver;
+
+	
+	@Test
+	public void Obstacle1() {
+		   driver=new ChromeDriver();
+	    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+		
+		WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[1]/td[9]/a"));
+		try1.click();
+		
+		WebElement clickMe=driver.findElement(By.xpath("//a[@class='btn theme-btn-color btn-lg animated fadeInDown delay-3 btn-big']"));
+		clickMe.click();
+		
+		driver.findElement(By.xpath("//button[@class='confirm']")).click();
+		
+	}
+		@Test
+	
+	public void Obstacle2() throws InterruptedException {
+		driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[9]/a"));
+			try1.click();
+			
+			WebElement click=driver.findElement(By.xpath("//div [@id='thisoneistheright']/p/a"));
+			click.click();
+			
+			Thread.sleep(3000);
+			
+			driver.findElement(By.xpath("//button[@class='confirm']")).click();
+		
+	}
+		
+		
+		@Test
+		
+		public void Obstacle3() throws InterruptedException {
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement element=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[9]/a"));
+	        element.click();
+	        
+	        WebElement click1=driver.findElement(By.xpath("//a[@id='rnd_46576']"));
+			click1.click();
+			Thread.sleep(1000);
+			click1.click();
+	        
+			//driver.findElement(By.xpath("//button[@class='confirm']")).click();
+
+			
+		}
+		
+
+		@Test
+		public void Obstacle4_FunWithTables() throws InterruptedException {
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement element=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[6]/td[9]/a"));
+	        element.click();
+	        
+	        WebElement click1=driver.findElement(By.xpath("//*[@id=\"persons\"]/tbody/tr[4]/td[4]/div/button[2]"));
+	        Actions action = new Actions(driver);
+		    action.moveToElement(click1).click().perform();
+            
+			Thread.sleep(1000);
+	        
+
+			
+		}
+		
+		
+		
+		@Test
+		public void Obstacle5() throws InterruptedException {
+			driver=new ChromeDriver();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().window().maximize();
+			String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+			driver.get(url);
+			
+			
+			WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[6]/td[9]/a"));
+			try1.click();
+			Select multilist = new Select(driver.findElement(By.xpath("//select[@id='multiselect']")));
+			
+			if(multilist.isMultiple()) 
+			{
+				multilist.selectByVisibleText("Functional testing");
+				
+				multilist.selectByVisibleText("GUI testing");
+				multilist.selectByVisibleText("End2End testing");
+				
+				multilist.selectByVisibleText("Exploratory testing");
+
+			}
+			
+			Thread.sleep(1000);	
+		}
+		
+		
+		@Test
+		
+		public void Obstacle6_() throws InterruptedException {
+			driver=new ChromeDriver();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+				driver.get(url);
+				
+				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[7]/td[9]/a"));
+				try1.click();
+				
+				WebElement elem=driver.findElement(By.xpath("//input[@id='s2id_autogen1']"));
+				elem.sendKeys("EEE");
+				
+				
+					
+		}
+		
+		
+		
+		
+         @Test	
+		public void Obstacle7_WaitAMoment() throws InterruptedException {
+			driver=new ChromeDriver();
+				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+				driver.get(url);
+				
+				WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[8]/td[9]/a"));
+				try1.click();
+				
+	            WebElement calculate=driver.findElement(By.xpath("//p/button[@id='one']"));
+	            calculate.click();
+	            Thread.sleep(10000);
+	            WebElement send=driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div/div[4]/div[3]/p"));
+	            send.click();
+				
+				
+					
+		}
+		
+		
+		
+		
+}

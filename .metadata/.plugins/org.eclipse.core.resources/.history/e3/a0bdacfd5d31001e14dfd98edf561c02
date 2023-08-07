@@ -1,0 +1,48 @@
+package Demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Demo {
+
+	WebDriver driver;
+
+	public Demo(WebDriver driver) {
+		this.driver=driver;
+	}
+
+	
+	//obstcle1
+	By try1=By.xpath("/html/body/div[2]/table/tbody/tr[1]/td[9]/a");
+	By clickMe=By.xpath("//a[@class='btn theme-btn-color btn-lg animated fadeInDown delay-3 btn-big']");
+	By submit=By.xpath("//button[@class='confirm']");
+	
+	//obstacle2
+	By try2=By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[9]/a");
+	By click1=By.xpath("//div [@id='thisoneistheright']/p/a");
+	
+	
+	public void clickTryOption() {
+		driver.findElement(try1).click();
+	}
+	
+	public void clickMeOption() {
+		driver.findElement(clickMe).click();
+	}
+	
+	public void clickSubmit() {
+		driver.findElement(submit).click();
+	}
+	
+	public void ClickTry() {
+		driver.findElement(try2).click();
+	}
+	
+	public void ClickClick() {
+		driver.findElement(click1).click();
+	}
+	
+	public void NavigateBack() {
+		driver.navigate().back();
+	}
+}

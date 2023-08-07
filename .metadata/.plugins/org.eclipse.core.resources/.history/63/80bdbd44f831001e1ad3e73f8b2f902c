@@ -1,0 +1,67 @@
+package Demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import GenericFunction.Generic_Function;
+
+public class Loginpage extends Generic_Function{
+	
+	
+	WebDriver driver;
+
+	public Loginpage(WebDriver driver) {
+		super(driver);
+	}
+
+	By Account=By.xpath("//li[@class='dropdown']/a[@title='My Account']");
+	By loginbtn=By.xpath("//ul[@class='dropdown-menu dropdown-menu-right']/li[2]");
+	
+	//By Account=By.linkText("My Account");
+	//By loginbtn=By.linkText("Login");
+	
+	By heading = By.linkText("Edit your account information");
+	By logoutBtn = By.linkText("Logout");
+	
+	By email_id=By.xpath("//*[@id=\"input-email\"]");
+	By password=By.xpath("//*[@id=\"input-password\"]");
+	By login=By.xpath("//*[@id=\"content\"]/div/div[2]/div/form/input");
+	
+	
+	
+	public void clickAccount() {
+		findElement(Account).click();
+	}
+	
+	public void clickLogin() {
+	    findElement(loginbtn).click();
+	}
+	
+			
+	public void enterEmail(String email) {
+		
+		findElement(email_id).sendKeys(email);
+	}
+
+
+	public void enterPassword(String pass) {
+		findElement(password).sendKeys(pass);
+	}
+	
+	//Method to click on Login button
+	public void clickLogin1() {
+		findElement(login).click();
+	}
+	
+	
+	public String getHeading() {
+		String head = driver.findElement(heading).getText();
+		return head;
+	}
+	
+	public void clickLogout() {
+		findElement(logoutBtn).click();
+	}
+
+
+}

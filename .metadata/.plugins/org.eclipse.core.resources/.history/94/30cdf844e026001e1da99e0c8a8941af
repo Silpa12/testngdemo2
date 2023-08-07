@@ -1,0 +1,38 @@
+package obstacles;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Obstacles {
+	
+	WebDriver driver;
+	
+	@Test
+	
+	public void Obstacle1() {
+		
+		driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+		driver.get(url);
+		
+		 
+		WebElement try1=driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[1]/td[9]/a"));
+		try1.click();
+		
+		WebElement clickMe=driver.findElement(By.xpath("//a[@class='btn theme-btn-color btn-lg animated fadeInDown delay-3 btn-big']"));
+		clickMe.click();
+		
+	}
+		
+	
+		
+}

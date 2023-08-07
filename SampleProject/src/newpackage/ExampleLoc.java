@@ -1,0 +1,26 @@
+package newpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ExampleLoc {
+	
+	public static void main(String args[]) {
+		
+		
+		WebDriver driver=new ChromeDriver();
+		
+		 String url ="https://www.google.com/";
+	     driver.get(url);
+	     WebElement p=driver.findElement(By.xpath("//*[@id=\"APjFqb\"]"));
+	     p.sendKeys("java programs");
+	     
+	     p.submit();
+	     
+	   // WebElement p1=driver.findElement(By.xpath("//*[@id="gsr"]"));
+	     
+	}
+
+}

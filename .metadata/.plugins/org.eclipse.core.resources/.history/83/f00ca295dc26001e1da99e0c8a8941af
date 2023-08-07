@@ -1,0 +1,58 @@
+package obstacles;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Obstacles {
+	
+	WebDriver driver;
+
+	@BeforeMethod
+
+	public void setup() 
+	{
+		
+		 driver=new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+		driver.get(url);
+		
+		driver.findElement(By.xpath("//*[@id=\"undefined-sticky-wrapper\"]/div/div/div[2]/ul/li[3]/a")).click();
+		
+	}
+		
+	@Test(priority=0)
+		
+		public void VerifyLogin() throws InterruptedException
+		{
+			
+			WebElement email_id=driver.findElement(By.id("UserName"));
+			email_id.sendKeys("silpa.nair@testhouse.net");
+			WebElement password=driver.findElement(By.id("Password"));
+			password.sendKeys("Silpa123")	;
+			
+			driver.findElement(By.xpath("/html/body/div[2]/div[2]/div/div/form/div[3]/button")).click();
+			
+	        Thread.sleep(5000);
+
+			WebElement element1=driver.findElement(By.xpath("//*[@id=\"item-1\"]/figcaption/div/div/div/p[2]/a"));
+			Actions action = new Actions(driver);
+		     action.moveToElement(element1).click().perform();
+			
+	         
+			
+			
+		
+		}
+		
+	
+		
+}

@@ -1,0 +1,54 @@
+package TestScripts;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import Demo.Demo;
+public class TestScript {
+	
+//	public static void main(String args[])  {
+	@BeforeTest
+	public void beforTest() {
+		
+	    WebDriver driver=new ChromeDriver();
+     	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+		driver.get(url);
+	}
+	@Test
+	public void obstacle1() {	
+		
+		
+		
+
+
+//		Demo obj=new Demo(driver);
+//		
+//		obj.clickTryOption();
+//		obj.clickMeOption();
+//		obj.clickSubmit();
+
+		
+	}
+	
+	@Test
+	public void obstacle2() {	
+		
+		
+
+		String url="https://obstaclecourse.tricentis.com/Obstacles/List";
+		
+	}
+		@AfterTest
+		public void afterTest() {
+			
+		}
+	}
+
+

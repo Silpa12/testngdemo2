@@ -1,0 +1,79 @@
+package obstacles;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import org.openqa.selenium.interactions.Actions;
+
+public class Obstacles2 
+{
+		
+		WebDriver driver;
+
+		
+		@Test
+		public void Obstacle16_Meetingroom() 
+		{
+			    driver=new ChromeDriver();
+		    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=3";
+				driver.get(url);
+				
+				driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[3]/td[9]/a")).click();
+				
+				//WebElement time=driver.findElement(By.xpath("//table/tbody/tr[3]"));
+				
+				WebElement day=driver.findElement(By.xpath("//table/tbody/tr[3]/td[5]"));
+				
+				String text=day.getText();
+				//System.out.println(text);
+				WebElement textbox=driver.findElement(By.id("resulttext"));
+				textbox.sendKeys(text);
+	
+        }
+		
+		
+		@Test
+		
+		public void Obstacle17_halfway() throws InterruptedException
+		
+		{
+			    driver=new ChromeDriver();
+		    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().window().maximize();
+				String url="https://obstaclecourse.tricentis.com/Obstacles/List?page=3";
+				driver.get(url);
+				
+				driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[4]/td[9]/a")).click();
+				
+				WebElement button=driver.findElement(By.id("halfButton"));
+				int buttonWidth = button.getSize().getWidth();
+	            int buttonHeight = button.getSize().getHeight();
+	            
+	            int rightHalfX = button.getLocation().getX() + buttonWidth / 2;
+	           int y = button.getLocation().getY() + buttonHeight / 2;
+	          
+	            
+	            Actions actions = new Actions(driver);
+	            
+	            Thread.sleep(500);
+	            
+	            actions.moveToElement(button,rightHalfX,0).click().build().perform();
+	            
+	            
+	            
+	            
+	         
+        }
+		
+		
+		
+		}
+		
+		
+		
